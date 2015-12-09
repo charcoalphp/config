@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Charcoal-config by locomotivemtl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Charcoal-config</h1>
+      <h2 class="project-tagline">Configuration container for all things Charcoal</h2>
+      <a href="https://github.com/locomotivemtl/charcoal-config" class="btn">View on GitHub</a>
+      <a href="https://github.com/locomotivemtl/charcoal-config/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/locomotivemtl/charcoal-config/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="charcoal-config" class="anchor" href="#charcoal-config" aria-hidden="true"><span class="octicon octicon-link"></span></a>Charcoal Config</h1>
+
+<p>Configuration container for all things Charcoal.</p>
+
+<p><a href="https://travis-ci.org/locomotivemtl/charcoal-config"><img src="https://travis-ci.org/locomotivemtl/charcoal-config.svg?branch=master" alt="Build Status"></a></p>
+
+<p>This package provides easy hierarchical configuration container (for config storage and access).
+<code>Charcoal\Config</code> acts as a configuration registry / repository.</p>
+
+<h2>
+<a id="main-features" class="anchor" href="#main-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Main features</h2>
+
+<ul>
+<li><a href="#supported-file-formats">Load data from ini, json or php files.</a></li>
+<li><a href="#seperators">Customizable separator access.</a></li>
+<li><a href="#delegates">Delegates (Chaining configurations).</a></li>
+<li><a href="#array-access">Array access.</a></li>
+<li><a href="#interoperability">Implement Interop-Container.</a></li>
+</ul>
+
+<h2>
+<a id="supported-file-formats" class="anchor" href="#supported-file-formats" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported file formats</h2>
+
+<p>There are currently 3 supported file formats: <code>ini</code>, <code>json</code> and <code>php</code>.</p>
+
+<p>To load configuration from a file, simply use the <code>add_file()</code> method. The file's extension will be used to determine how to load the file.</p>
+
+<p>It is also possible to load a config file directly from the constructor, by passing a file <em>string</em> as the first argument.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\</span><span class="pl-c1">GenericConfig</span>(<span class="pl-s"><span class="pl-pds">'</span>../config/my-config.json<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="json-configuration" class="anchor" href="#json-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>JSON configuration</h3>
+
+<p>For the JSON file:</p>
+
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>example<span class="pl-pds">"</span></span>:{
+        <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<p>Loading this file into configuration would be:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\</span><span class="pl-c1">GenericConfig</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>add_file(<span class="pl-s"><span class="pl-pds">'</span>./config/my-config.json<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Output "bar"</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>example/foo<span class="pl-pds">'</span></span>];</span></pre></div>
+
+<h3>
+<a id="ini-configuration" class="anchor" href="#ini-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>INI configuration</h3>
+
+<p>For the INI file:</p>
+
+<div class="highlight highlight-source-ini"><pre><span class="pl-en">[example]</span>
+<span class="pl-k">foo</span>=bar</pre></div>
+
+<p>Loading this file into configuration would be:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\</span><span class="pl-c1">GenericConfig</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>add_file(<span class="pl-s"><span class="pl-pds">'</span>./config/my-config.ini<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Outputs "bar"</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>exampe/foo<span class="pl-pds">'</span></span>];</span></pre></div>
+
+<h3>
+<a id="php-configuration" class="anchor" href="#php-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>PHP configuration</h3>
+
+<p>The PHP configuration is loaded from an internal <code>include</code>, therefore, the scope of <code>$this</code> in the php file is the current <em>Config</em> instance.</p>
+
+<p>For the PHP file:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$this</span>[<span class="pl-s"><span class="pl-pds">'</span>example<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">];</span></pre></div>
+
+<p>Loading this file into configuration would be:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\</span><span class="pl-c1">GenericConfig</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>add_file(<span class="pl-s"><span class="pl-pds">'</span>./config/my-config.php<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Outputs "bar"</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>example/foo<span class="pl-pds">'</span></span>];</span></pre></div>
+
+<h2>
+<a id="separators" class="anchor" href="#separators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Separators</h2>
+
+<p>It is possible to fetch embedded <em>array-ish</em> values recursively in a single call with the help of <em>separators</em>.</p>
+
+<p>The default separator is <code>/</code> (it can be retrieved with <code>separator()</code>) but it can be changed easily with <code>set_separator()</code>.</p>
+
+<blockquote>
+<p><g-emoji alias="point_right" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png">👉</g-emoji> Separator must be a single character. An exception will be thrown if trying to call <code>set_separator()</code> with a longer string.</p>
+</blockquote>
+
+<h3>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h3>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\</span><span class="pl-c1">GenericConfig</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>set_separator(<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>); <span class="pl-c">// Default is "/"</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>set_data([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>, [</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>baz<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">example</span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">42</span></span>
+<span class="pl-s1">    ]</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"><span class="pl-c">// Ouput "42"</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>foo.bar<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h2>
+<a id="delegates" class="anchor" href="#delegates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delegates</h2>
+
+<p>It is possible to "chain" configuration containers with the help of <em>delegates</em>.</p>
+
+<p>If one or more delegates are added to a class, they will be used as <em>fallback</em> when trying to fetch a key that isn't set in the config.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\Config\</span><span class="pl-c1">GenericConfig</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>baz<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `false`</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>has(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Throws exception</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$config2</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\Config\</span><span class="pl-c1">GenericConfig</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">42</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>add_delegate(<span class="pl-smi">$config2</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns 42</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p>Delegates can be set with:</p>
+
+<ul>
+<li>
+<code>set_delegates()</code> to set an array of delegates.</li>
+<li>
+<code>add_delegate()</code> to add a config object at the end of the delegate list.</li>
+<li>
+<code>prepend_delegate()</code> to add a config object at the beginning of the delegate list.</li>
+</ul>
+
+<p>It is also possible to set delegates by passing them (as an array of ConfigInterface) to the constructor:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\Config\</span><span class="pl-c1">GenericConfig</span>(<span class="pl-s"><span class="pl-pds">'</span>../config/my-config.json<span class="pl-pds">'</span></span>, [<span class="pl-smi">$delegate1</span>, <span class="pl-smi">$delegate2</span>]);</span></pre></div>
+
+<blockquote>
+<p><g-emoji alias="point_right" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png">👉</g-emoji> The order of the delegates is important. They are looked in the order they are added, so the first match is returned. Use <code>prepend_delegate()</code> to add a config at the beginning of the stack (top priority).</p>
+</blockquote>
+
+<h2>
+<a id="array-access" class="anchor" href="#array-access" aria-hidden="true"><span class="octicon octicon-link"></span></a>Array Access</h2>
+
+<p>The config class implements the <code>ArrayAccess</code> interface and therefore can be used with array style:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\Config\</span><span class="pl-c1">GenericConfig</span>();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Set value with array</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-c1">42</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `42`</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `true`</span></span>
+<span class="pl-s1"><span class="pl-c1">isset</span>(<span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `false`</span></span>
+<span class="pl-s1"><span class="pl-c1">isset</span>(<span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>invalid-key<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Invalidate the "foobar" config key</span></span>
+<span class="pl-s1"><span class="pl-c1">unset</span>(<span class="pl-smi">$config</span>[<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>]);</span></pre></div>
+
+<h2>
+<a id="interoperability" class="anchor" href="#interoperability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interoperability</h2>
+
+<p>The <code>\Charcoal\Config</code> container implements the <code>container-interop</code> interface.</p>
+
+<p>See <a href="https://github.com/container-interop/container-interop">https://github.com/container-interop/container-interop</a>.</p>
+
+<p>This interface requires the <code>get()</code> and <code>has()</code> methods:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Charcoal\Config\</span><span class="pl-c1">GenericConfig</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">42</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `true`</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>has(<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `false`</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>has(<span class="pl-s"><span class="pl-pds">'</span>invalid-key<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Returns `42`</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<h3>
+<a id="coding-style" class="anchor" href="#coding-style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coding Style</h3>
+
+<p>All Charcoal modules follow the same coding style and <code>charcoal-core</code> is no exception. For PHP:</p>
+
+<ul>
+<li>
+<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md"><em>PSR-1</em></a>, except for
+
+<ul>
+<li>Method names MUST be declared in <code>snake_case</code>.</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md"><em>PSR-2</em></a>, except the PSR-1 requirement.</li>
+<li>
+<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md"><em>PSR-4</em></a>, autoloading is therefore provided by <em>Composer</em>
+</li>
+<li>
+<a href="http://phpdoc.org/"><em>phpDocumentor</em></a>
+
+<ul>
+<li>Add DocBlocks for all classes, methods, and functions;</li>
+<li>For type-hinting, use <code>boolean</code> (instead of <code>bool</code>), <code>integer</code> (instead of <code>int</code>), <code>float</code> (instead of <code>double</code> or <code>real</code>);</li>
+<li>Omit the <code>@return</code> tag if the method does not return anything.</li>
+</ul>
+</li>
+<li>Naming conventions
+
+<ul>
+<li>Use <code>snake_case</code>, not <code>camelCase</code>, for variable, option, parameter, argument, function, and method names;</li>
+<li>Prefix abstract classes with <code>Abstract</code>;</li>
+<li>Suffix interfaces with <code>Interface</code>;</li>
+<li>Suffix traits with <code>Trait</code>;</li>
+<li>Suffix exceptions with <code>Exception</code>;</li>
+<li>For type-hinting, use <code>int</code> (instead of <code>integer</code>) and <code>bool</code> (instead of <code>boolean</code>);</li>
+<li>For casting, use <code>int</code> (instead of <code>integer</code>) and <code>!!</code> (instead of <code>bool</code> or <code>boolean</code>);</li>
+<li>For arrays, use <code>[]</code> (instead of <code>array()</code>).</li>
+</ul>
+</li>
+</ul>
+
+<p>Coding styles are  enforced with <code>grunt phpcs</code> (<a href="https://github.com/squizlabs/PHP_CodeSniffer"><em>PHP Code Sniffer</em></a>). The actual ruleset can be found in <code>phpcs.xml</code>.</p>
+
+<blockquote>
+<p><g-emoji alias="point_right" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png">👉</g-emoji> To fix minor coding style problems, run <code>grunt phpcbf</code> (<a href="https://github.com/squizlabs/PHP_CodeSniffer"><em>PHP Code Beautifier and Fixer</em></a>). This tool uses the same ruleset as <em>phpcs</em> to automatically correct coding standard violations.</p>
+</blockquote>
+
+<p>The main PHP structure follows the <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md"><em>PSR-4</em></a> standard. Autoloading is therefore provided by <em>Composer</em>.</p>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
+
+<ul>
+<li>Mathieu Ducharme <a href="mailto:mat@locomotive.ca">mat@locomotive.ca</a>
+</li>
+</ul>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a id="02" class="anchor" href="#02" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2</h3>
+
+<p><em>Unreleased</em></p>
+
+<ul>
+<li>Added the "delegates" feature.</li>
+<li>Setting value with a separator now tries to set as array.</li>
+<li>Implements the container-interop interface.</li>
+</ul>
+
+<h3>
+<a id="011" class="anchor" href="#011" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.1</h3>
+
+<p><em>Released on 2015-12-02</em></p>
+
+<ul>
+<li>Removed the second argument for the constructor (currently unused).</li>
+<li>Clearer error message on invalid JSON files.</li>
+<li>Fix composer.json and the autoloader.</li>
+<li>Various internal changes (PSR2 compliancy, <em>with psr1 exception</em>).</li>
+</ul>
+
+<h3>
+<a id="01" class="anchor" href="#01" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1</h3>
+
+<p><em>Released on 2015-08-25</em></p>
+
+<ul>
+<li>Initial release of <code>charcoal-config</code>,</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/locomotivemtl/charcoal-config">Charcoal-config</a> is maintained by <a href="https://github.com/locomotivemtl">locomotivemtl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
