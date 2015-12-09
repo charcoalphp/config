@@ -34,10 +34,11 @@
 
 <ul>
 <li><a href="#supported-file-formats">Load data from ini, json or php files.</a></li>
-<li><a href="#seperators">Customizable separator access.</a></li>
+<li><a href="#separators">Customizable separator access.</a></li>
 <li><a href="#delegates">Delegates (Chaining configurations).</a></li>
 <li><a href="#array-access">Array access.</a></li>
 <li><a href="#interoperability">Implement Interop-Container.</a></li>
+<li><a href="#configurable">Provide Configurable Interface</a></li>
 </ul>
 
 <h2>
@@ -221,6 +222,49 @@
 <span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>);</span></pre></div>
 
 <h2>
+<a id="configurable" class="anchor" href="#configurable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configurable</h2>
+
+<p>Also provided in this package is a <em>Configurable</em> interface (<code>\Charcoal\Config\ConfigrableInterface</code>) and its full implementation as a trait. <code>\Charcoal\Config\ConfigurableTrait</code>.</p>
+
+<p>Configurable (which could have been called "<em>Config Aware</em>") objects can have an associated config instance that can help defines various properties, states, or other.</p>
+
+<p>The config object can be set with <code>set_config()</code> and retrieve with <code>config()</code>.</p>
+
+<p>Implementation example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">\Charcoal\Config\ConfigurableInterface</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">\Charcoal\Config\ConfigurableTrait</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">\Acme\Foo\FooConfig</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Foo</span> <span class="pl-k">implements</span> <span class="pl-e">ConfigurableInterface</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">use</span> <span class="pl-c1">ConfigurableTrait</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">create_config</span>(<span class="pl-k">array</span> <span class="pl-smi">$data</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">FooConfig</span>();</span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$data</span> <span class="pl-k">!</span><span class="pl-k">==</span> <span class="pl-c1">null</span>) {</span>
+<span class="pl-s1">            <span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>set_data(<span class="pl-smi">$data</span>);</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-smi">$config</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>The previous class could be use as such:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$foo</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Foo</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$foo</span><span class="pl-k">-&gt;</span>set_config([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span>[</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>baz<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">42</span></span>
+<span class="pl-s1">    ]</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// echo 42</span></span>
+<span class="pl-s1"><span class="pl-smi">$foo_config</span> <span class="pl-k">=</span> <span class="pl-smi">$foo</span><span class="pl-k">-&gt;</span>config();</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$foo_config</span>[<span class="pl-s"><span class="pl-pds">'</span>bar/baz<span class="pl-pds">'</span></span>];</span></pre></div>
+
+<h2>
 <a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
 
 <h3>
@@ -287,7 +331,7 @@
 <h3>
 <a id="02" class="anchor" href="#02" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2</h3>
 
-<p><em>Unreleased</em></p>
+<p><em>Released on 2015-02-09</em></p>
 
 <ul>
 <li>Added the "delegates" feature.</li>
