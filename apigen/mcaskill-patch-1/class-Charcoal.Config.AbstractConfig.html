@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Charcoal\Config\AbstractConfig</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.Config.html">
+						Config					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Charcoal.Config.AbstractConfig.html">AbstractConfig</a></li>
+				<li><a href="class-Charcoal.Config.AbstractEntity.html">AbstractEntity</a></li>
+				<li><a href="class-Charcoal.Config.GenericConfig.html">GenericConfig</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Charcoal.Config.ConfigInterface.html">ConfigInterface</a></li>
+				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
+				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+			</ul>
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Charcoal.Config.html" title="Summary of Charcoal\Config"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class AbstractConfig</h1>
+
+
+	<div class="description">
+	<p>Configuration container / registry.</p>
+
+<p>An abstract class that fulfills the full ConfigInterface.</p>
+
+<p>This class also implements the <code>ArrayAccess</code> interface, so each member can be accessed with <code>[]</code>.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Charcoal.Config.AbstractEntity.html"><span>Charcoal\Config\AbstractEntity</span></a>
+			
+			 implements 
+				<a href="class-Charcoal.Config.EntityInterface.html"><span>Charcoal\Config\EntityInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Charcoal\Config\AbstractConfig</span></b>			
+			 implements 
+				<a href="class-Charcoal.Config.ConfigInterface.html"><span>Charcoal\Config\ConfigInterface</span></a>, 
+			
+<span>Interop\Container\ContainerInterface</span>, 
+			
+<span>IteratorAggregate</span>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Charcoal.Config.GenericConfig.html">Charcoal\Config\GenericConfig</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Charcoal.Config.AbstractConfig.html#20-278" title="Go to source code">Charcoal/Config/AbstractConfig.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			final public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#40-73" title="Go to source code">__construct</a>( <span>mixed <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$delegates</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Create the configuration.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create the configuration.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Optional default data. Either a filename, an array, or a Config object.</dd>
+					<dt><var>$delegates</var></dt>
+					<dd>An array of delegates (config) to set.</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If $data is invalid.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="separator" id="_separator">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_separator">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#75-83" title="Go to source code">separator</a>( )</code>
+
+		<div class="description short">
+			<p>Config gives public access to its separator.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Config gives public access to its separator.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addFile" id="_addFile">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addFile">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#85-101" title="Go to source code">addFile</a>( <span>string <var>$filename</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a configuration file. The file type is determined by its extension.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a configuration file. The file type is determined by its extension.</p>
+
+<p>Supported file types are <code>ini</code>, <code>json</code>, <code>php</code></p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd>A supported configuration file.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code><br>(Chainable)
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the file is invalid.
+				</div>
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_addFile">Charcoal\Config\ConfigInterface::addFile()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadFile" id="_loadFile">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadFile">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#103-140" title="Go to source code">loadFile</a>( <span>string <var>$filename</var></span> )</code>
+
+		<div class="description short">
+			<p>Load a configuration file. The file type is determined by its extension.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Load a configuration file. The file type is determined by its extension.</p>
+
+<p>Supported file types are <code>ini</code>, <code>json</code>, <code>php</code></p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd>A supported configuration file.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The file content.
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the filename is invalid.
+				</div>
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_loadFile">Charcoal\Config\ConfigInterface::loadFile()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#142-158" title="Go to source code">merge</a>( <span>array|Traversable|<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code> <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>For each key, calls <code>set()</code>, which calls <code>offsetSet()</code>  (from ArrayAccess).</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>For each key, calls <code>set()</code>, which calls <code>offsetSet()</code>  (from ArrayAccess).</p>
+
+<p>The provided <code>$data</code> can be a simple array or an object which implements <code>Traversable</code>
+(such as a <code>ConfigInterface</code> instance).</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to set.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code><br>Chainable
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">Charcoal\Config\AbstractEntity::offsetSet()</a></code><br>
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_merge">Charcoal\Config\ConfigInterface::merge()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="defaults" id="_defaults">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaults">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#160-171" title="Go to source code">defaults</a>( )</code>
+
+		<div class="description short">
+			<p>A stub for when the default data is empty.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>A stub for when the default data is empty.</p>
+
+<p>Make sure to reimplement in children ConfigInterface classes if any default data should be set.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.ConfigInterface.html#_defaults">Charcoal\Config\ConfigInterface::defaults()</a></code><br>
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_defaults">Charcoal\Config\ConfigInterface::defaults()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+
+			ArrayIterator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#173-181" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			<p>IteratorAggregate > getIterator()</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>IteratorAggregate > getIterator()</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					ArrayIterator
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>IteratorAggregate::getIterator()</code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.AbstractEntity.html#methods">Charcoal\Config\AbstractEntity</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.AbstractEntity.html#_addDelegate">addDelegate()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_camelize">camelize()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_data">data()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_get">get()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_getWithSeparator">getWithSeparator()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_getter">getter()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_has">has()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_hasInDelegates">hasInDelegates()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_hasWithSeparator">hasWithSeparator()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_jsonSerialize">jsonSerialize()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_keys">keys()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">offsetSet()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetUnset">offsetUnset()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_prependDelegate">prependDelegate()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_serialize">serialize()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_set">set()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_setData">setData()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_setDelegates">setDelegates()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_setSeparator">setSeparator()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_setWithSeparator">setWithSeparator()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_setter">setter()</a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#_unserialize">unserialize()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="DEFAULT_SEPARATOR" id="DEFAULT_SEPARATOR">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Charcoal.Config.AbstractConfig.html#32" title="Go to source code"><b>DEFAULT_SEPARATOR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#DEFAULT_SEPARATOR" class="anchor">#</a>
+				<code><span class="php-quote">'.'</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="separator" id="$separator">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Config.AbstractConfig.html#34-38" title="Go to source code"><var>$separator</var></a>
+
+			<div class="description short">
+				<p>Default separator for config is "."</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Default separator for config is "."</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$separator" class="anchor">#</a>
+				<code><code><a href="class-Charcoal.Config.AbstractConfig.html#DEFAULT_SEPARATOR">Charcoal\Config\AbstractConfig::<b>DEFAULT_SEPARATOR</b></a></code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Charcoal.Config.AbstractEntity.html#properties">Charcoal\Config\AbstractEntity</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.AbstractEntity.html#$delegates"><var>$delegates</var></a>, 
+			<a href="class-Charcoal.Config.AbstractEntity.html#$keys"><var>$keys</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
