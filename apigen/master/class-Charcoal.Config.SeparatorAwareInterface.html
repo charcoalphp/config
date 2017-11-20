@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Interface Charcoal\Config\ConfigurableInterface</title>
+	<title>Interface Charcoal\Config\SeparatorAwareInterface</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -47,10 +47,10 @@
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigInterface.html">ConfigInterface</a></li>
-				<li class="active"><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
+				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
-				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
+				<li class="active"><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
 			<h3>Traits</h3>
@@ -94,20 +94,24 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Interface ConfigurableInterface</h1>
+	<h1>Interface SeparatorAwareInterface</h1>
 
 
-	<div class="description">
-	<p>Configurable Interface defines object that can be configured with a Config object.</p>
 
-<p>This interface can be fully implemented with its accompanying <code>ConfigurableTrait</code>.</p>
+
+
+
+
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a>
 	</div>
 
-
-
-
-
-
+	<div>
+		<h4>Indirect known implementers</h4>
+			<a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a>, 
+			<a href="class-Charcoal.Config.GenericConfig.html">Charcoal\Config\GenericConfig</a>
+	</div>
 
 
 
@@ -117,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.ConfigurableInterface.html#8-34" title="Go to source code">Charcoal/Config/ConfigurableInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.SeparatorAwareInterface.html#5-15" title="Go to source code">Charcoal/Config/SeparatorAwareInterface.php</a>
 		<br>
 	</div>
 
@@ -125,80 +129,37 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="setConfig" id="_setConfig">
+	<tr data-order="setSeparator" id="_setSeparator">
 
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></code>
+			<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setConfig">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigurableInterface.html#15-21" title="Go to source code">setConfig</a>( <span><code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>|array <var>$config</var></span> )</code>
+		<a class="anchor" href="#_setSeparator">#</a>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareInterface.html#10-14" title="Go to source code">setSeparator</a>( <span>string <var>$separator</var></span> )</code>
 
 		<div class="description short">
-			<p>Set the object's configuration container.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Set the object's configuration container.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$config</var></dt>
-					<dd>The config object or data.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="config" id="_config">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>
 			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_config">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigurableInterface.html#23-33" title="Go to source code">config</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Retrieve the object's configuration container, or one of its entry.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the object's configuration container, or one of its entry.</p>
-
-<p>If the object has no existing config, create one.</p>
-
-<p>If a key is provided, return the configuration key value instead of the full object.</p>
+			
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd>Optional. If provided, the config key value will be returned, instead of the full object.</dd>
+					<dt><var>$separator</var></dt>
+					<dd>The separator character.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>
+					<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code><br>Chainable
 				</div>
 
 

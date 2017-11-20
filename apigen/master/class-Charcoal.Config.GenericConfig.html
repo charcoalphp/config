@@ -48,12 +48,16 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigInterface.html">ConfigInterface</a></li>
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
 
@@ -117,6 +121,10 @@
 			
 <span>IteratorAggregate</span>
 			
+			 uses 
+					<a href="class-Charcoal.Config.DelegatesAwareTrait.html"><span>Charcoal\Config\DelegatesAwareTrait</span></a>, 
+			
+					<a href="class-Charcoal.Config.SeparatorAwareTrait.html"><span>Charcoal\Config\SeparatorAwareTrait</span></a>
 			
 		</dd>
 		<dd style="padding-left:60px">
@@ -157,7 +165,9 @@
 			<a href="class-Charcoal.Config.AbstractConfig.html#_getIterator">getIterator()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_loadFile">loadFile()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_merge">merge()</a>, 
-			<a href="class-Charcoal.Config.AbstractConfig.html#_separator">separator()</a>
+			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetSet">offsetSet()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -165,34 +175,63 @@
 	<caption>Methods inherited from <a href="class-Charcoal.Config.AbstractEntity.html#methods">Charcoal\Config\AbstractEntity</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Charcoal.Config.AbstractEntity.html#_addDelegate">addDelegate()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_camelize">camelize()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_data">data()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_get">get()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_getWithSeparator">getWithSeparator()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_getter">getter()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_has">has()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_hasInDelegates">hasInDelegates()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_hasWithSeparator">hasWithSeparator()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_jsonSerialize">jsonSerialize()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_keys">keys()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetExists">offsetExists()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetGet">offsetGet()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">offsetSet()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_offsetUnset">offsetUnset()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_prependDelegate">prependDelegate()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_serialize">serialize()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_set">set()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_setData">setData()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_setDelegates">setDelegates()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_setSeparator">setSeparator()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_setWithSeparator">setWithSeparator()</a>, 
-			<a href="class-Charcoal.Config.AbstractEntity.html#_setter">setter()</a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#_unserialize">unserialize()</a>
 		</code></td>
 	</tr>
 	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.DelegatesAwareInterface.html#methods">Charcoal\Config\DelegatesAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_addDelegate">addDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_prependDelegate">prependDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_setDelegates">setDelegates()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.SeparatorAwareInterface.html#methods">Charcoal\Config\SeparatorAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.SeparatorAwareInterface.html#_setSeparator">setSeparator()</a>
+		</code></td>
+	</tr>
+	</table>
 
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Config.DelegatesAwareTrait.html#methods">Charcoal\Config\DelegatesAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_addDelegate">addDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_getInDelegates">getInDelegates()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_hasInDelegates">hasInDelegates()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_prependDelegate">prependDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_setDelegates">setDelegates()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Config.SeparatorAwareTrait.html#methods">Charcoal\Config\SeparatorAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#_getWithSeparator">getWithSeparator()</a>, 
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#_hasWithSeparator">hasWithSeparator()</a>, 
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#_separator">separator()</a>, 
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#_setSeparator">setSeparator()</a>, 
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#_setWithSeparator">setWithSeparator()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -213,23 +252,22 @@
 
 
 	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Charcoal.Config.AbstractConfig.html#properties">Charcoal\Config\AbstractConfig</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Charcoal.Config.AbstractConfig.html#$separator"><var>$separator</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-Charcoal.Config.AbstractEntity.html#properties">Charcoal\Config\AbstractEntity</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Charcoal.Config.AbstractEntity.html#$delegates"><var>$delegates</var></a>, 
 			<a href="class-Charcoal.Config.AbstractEntity.html#$keys"><var>$keys</var></a>
 		</code></td>
 	</tr>
 	</table>
 
+	<table class="summary used">
+	<caption>Properties used from <a href="class-Charcoal.Config.SeparatorAwareTrait.html#properties">Charcoal\Config\SeparatorAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.SeparatorAwareTrait.html#$separator"><var>$separator</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

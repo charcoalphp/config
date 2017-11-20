@@ -48,12 +48,16 @@
 			<ul>
 				<li class="active"><a href="class-Charcoal.Config.ConfigInterface.html">ConfigInterface</a></li>
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
 
@@ -101,7 +105,11 @@
 		<dd style="padding-left:0px">
 <b><span>Charcoal\Config\ConfigInterface</span></b>			
 			 implements 
-				<a href="class-Charcoal.Config.EntityInterface.html"><span>Charcoal\Config\EntityInterface</span></a>
+				<a href="class-Charcoal.Config.DelegatesAwareInterface.html"><span>Charcoal\Config\DelegatesAwareInterface</span></a>, 
+			
+				<a href="class-Charcoal.Config.EntityInterface.html"><span>Charcoal\Config\EntityInterface</span></a>, 
+			
+				<a href="class-Charcoal.Config.SeparatorAwareInterface.html"><span>Charcoal\Config\SeparatorAwareInterface</span></a>
 			
 			
 		</dd>
@@ -128,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.ConfigInterface.html#10-46" title="Go to source code">Charcoal/Config/ConfigInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.ConfigInterface.html#7-40" title="Go to source code">Charcoal/Config/ConfigInterface.php</a>
 		<br>
 	</div>
 
@@ -136,42 +144,6 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="keys" id="_keys">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_keys">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#15-20" title="Go to source code">keys</a>( )</code>
-
-		<div class="description short">
-			<p>Get the configuration's available keys.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get the configuration's available keys.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Config.EntityInterface.html#_keys">Charcoal\Config\EntityInterface::keys()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="merge" id="_merge">
 
 		<td class="attributes"><code>
@@ -184,7 +156,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_merge">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#22-26" title="Go to source code">merge</a>( <span>array|Traversable <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#16-20" title="Go to source code">merge</a>( <span>array|Traversable <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -223,7 +195,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaults">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#28-33" title="Go to source code">defaults</a>( )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#22-27" title="Go to source code">defaults</a>( )</code>
 
 		<div class="description short">
 			<p>The default data, called from object's constructor.</p>
@@ -257,7 +229,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addFile">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#35-39" title="Go to source code">addFile</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#29-33" title="Go to source code">addFile</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -296,7 +268,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadFile">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#41-45" title="Go to source code">loadFile</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigInterface.html#35-39" title="Go to source code">loadFile</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -326,18 +298,25 @@
 	</table>
 
 	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.DelegatesAwareInterface.html#methods">Charcoal\Config\DelegatesAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_addDelegate">addDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_prependDelegate">prependDelegate()</a>, 
+			<a href="class-Charcoal.Config.DelegatesAwareInterface.html#_setDelegates">setDelegates()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-Charcoal.Config.EntityInterface.html#methods">Charcoal\Config\EntityInterface</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Charcoal.Config.EntityInterface.html#_addDelegate">addDelegate()</a>, 
 			<a href="class-Charcoal.Config.EntityInterface.html#_data">data()</a>, 
 			<a href="class-Charcoal.Config.EntityInterface.html#_get">get()</a>, 
 			<a href="class-Charcoal.Config.EntityInterface.html#_has">has()</a>, 
-			<a href="class-Charcoal.Config.EntityInterface.html#_prependDelegate">prependDelegate()</a>, 
+			<a href="class-Charcoal.Config.EntityInterface.html#_keys">keys()</a>, 
 			<a href="class-Charcoal.Config.EntityInterface.html#_set">set()</a>, 
-			<a href="class-Charcoal.Config.EntityInterface.html#_setData">setData()</a>, 
-			<a href="class-Charcoal.Config.EntityInterface.html#_setDelegates">setDelegates()</a>, 
-			<a href="class-Charcoal.Config.EntityInterface.html#_setSeparator">setSeparator()</a>
+			<a href="class-Charcoal.Config.EntityInterface.html#_setData">setData()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -366,6 +345,14 @@ offsetExists(),
 offsetGet(), 
 offsetSet(), 
 offsetUnset()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.SeparatorAwareInterface.html#methods">Charcoal\Config\SeparatorAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.SeparatorAwareInterface.html#_setSeparator">setSeparator()</a>
 		</code></td>
 	</tr>
 	</table>
