@@ -148,7 +148,7 @@
 </span><span id="53" class="l"><a href="#53"> 53: </a>        <span class="php-var">$data</span> = [];
 </span><span id="54" class="l"><a href="#54"> 54: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$keys</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span>) {
 </span><span id="55" class="l"><a href="#55"> 55: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">strtolower</span>(<span class="php-var">$key</span>) === <span class="php-quote">'data'</span>) {
-</span><span id="56" class="l"><a href="#56"> 56: </a>                <span class="php-comment">// Edge Case: Avoid recursive call</span>
+</span><span id="56" class="l"><a href="#56"> 56: </a>                <span class="php-comment">/** @internal Edge Case: Avoid recursive call */</span>
 </span><span id="57" class="l"><a href="#57"> 57: </a>                <span class="php-keyword1">continue</span>;
 </span><span id="58" class="l"><a href="#58"> 58: </a>            }
 </span><span id="59" class="l"><a href="#59"> 59: </a>
@@ -170,7 +170,7 @@
 </span><span id="75" class="l"><a href="#75"> 75: </a>    {
 </span><span id="76" class="l"><a href="#76"> 76: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$data</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
 </span><span id="77" class="l"><a href="#77"> 77: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">strtolower</span>(<span class="php-var">$key</span>) === <span class="php-quote">'data'</span>) {
-</span><span id="78" class="l"><a href="#78"> 78: </a>                <span class="php-comment">// Edge Case: Avoid recursive call</span>
+</span><span id="78" class="l"><a href="#78"> 78: </a>                <span class="php-comment">/** @internal Edge Case: Avoid recursive call */</span>
 </span><span id="79" class="l"><a href="#79"> 79: </a>                <span class="php-keyword1">continue</span>;
 </span><span id="80" class="l"><a href="#80"> 80: </a>            }
 </span><span id="81" class="l"><a href="#81"> 81: </a>
@@ -241,7 +241,7 @@
 </span><span id="146" class="l"><a href="#146">146: </a>
 </span><span id="147" class="l"><a href="#147">147: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;camelize(<span class="php-var">$key</span>);
 </span><span id="148" class="l"><a href="#148">148: </a>
-</span><span id="149" class="l"><a href="#149">149: </a>        <span class="php-comment">// Edge Case: &quot;_&quot; → ''</span>
+</span><span id="149" class="l"><a href="#149">149: </a>        <span class="php-comment">/** @internal Edge Case: &quot;_&quot; → &quot;&quot; */</span>
 </span><span id="150" class="l"><a href="#150">150: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$key</span> === <span class="php-quote">''</span>) {
 </span><span id="151" class="l"><a href="#151">151: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="152" class="l"><a href="#152">152: </a>        }
@@ -282,7 +282,7 @@
 </span><span id="187" class="l"><a href="#187">187: </a>
 </span><span id="188" class="l"><a href="#188">188: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;camelize(<span class="php-var">$key</span>);
 </span><span id="189" class="l"><a href="#189">189: </a>
-</span><span id="190" class="l"><a href="#190">190: </a>        <span class="php-comment">// Edge Case: &quot;_&quot; → ''</span>
+</span><span id="190" class="l"><a href="#190">190: </a>        <span class="php-comment">/** @internal Edge Case: &quot;_&quot; → &quot;&quot; */</span>
 </span><span id="191" class="l"><a href="#191">191: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$key</span> === <span class="php-quote">''</span>) {
 </span><span id="192" class="l"><a href="#192">192: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
 </span><span id="193" class="l"><a href="#193">193: </a>        }
@@ -323,7 +323,7 @@
 </span><span id="228" class="l"><a href="#228">228: </a>
 </span><span id="229" class="l"><a href="#229">229: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;camelize(<span class="php-var">$key</span>);
 </span><span id="230" class="l"><a href="#230">230: </a>
-</span><span id="231" class="l"><a href="#231">231: </a>        <span class="php-comment">// Edge Case: &quot;_&quot; → ''</span>
+</span><span id="231" class="l"><a href="#231">231: </a>        <span class="php-comment">/** @internal Edge Case: &quot;_&quot; → &quot;&quot; */</span>
 </span><span id="232" class="l"><a href="#232">232: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$key</span> === <span class="php-quote">''</span>) {
 </span><span id="233" class="l"><a href="#233">233: </a>            <span class="php-keyword1">return</span>;
 </span><span id="234" class="l"><a href="#234">234: </a>        }
@@ -361,7 +361,7 @@
 </span><span id="266" class="l"><a href="#266">266: </a>
 </span><span id="267" class="l"><a href="#267">267: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;camelize(<span class="php-var">$key</span>);
 </span><span id="268" class="l"><a href="#268">268: </a>
-</span><span id="269" class="l"><a href="#269">269: </a>        <span class="php-comment">// Edge Case: &quot;_&quot; → ''</span>
+</span><span id="269" class="l"><a href="#269">269: </a>        <span class="php-comment">/** @internal Edge Case: &quot;_&quot; → &quot;&quot; */</span>
 </span><span id="270" class="l"><a href="#270">270: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$key</span> === <span class="php-quote">''</span>) {
 </span><span id="271" class="l"><a href="#271">271: </a>            <span class="php-keyword1">return</span>;
 </span><span id="272" class="l"><a href="#272">272: </a>        }
