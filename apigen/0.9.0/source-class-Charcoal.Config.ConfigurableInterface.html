@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+
+	<title>File Charcoal/Config/ConfigurableInterface.php</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.Config.html">
+						Config					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></li>
+				<li><a href="class-Charcoal.Config.AbstractEntity.html">Charcoal\Config\AbstractEntity</a></li>
+				<li><a href="class-Charcoal.Config.GenericConfig.html">Charcoal\Config\GenericConfig</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></li>
+				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></li>
+				<li><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">Charcoal\Config\FileAwareInterface</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">Charcoal\Config\SeparatorAwareInterface</a></li>
+			</ul>
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">Charcoal\Config\ConfigurableTrait</a></li>
+				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">Charcoal\Config\DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">Charcoal\Config\FileAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">Charcoal\Config\SeparatorAwareTrait</a></li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Namespace</span>			</li>
+			<li>
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a href="#1"> 1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a href="#2"> 2: </a>
+</span><span id="3" class="l"><a href="#3"> 3: </a><span class="php-keyword1">namespace</span> Charcoal\Config;
+</span><span id="4" class="l"><a href="#4"> 4: </a>
+</span><span id="5" class="l"><a href="#5"> 5: </a><span class="php-comment">/**
+</span></span><span id="6" class="l"><a href="#6"> 6: </a><span class="php-comment"> * Describes an object that can be configured with an instance of {@see ConfigInterface}.
+</span></span><span id="7" class="l"><a href="#7"> 7: </a><span class="php-comment"> *
+</span></span><span id="8" class="l"><a href="#8"> 8: </a><span class="php-comment"> * This interface can be fully implemented with its accompanying {@see ConfigurableTrait}.
+</span></span><span id="9" class="l"><a href="#9"> 9: </a><span class="php-comment"> */</span>
+</span><span id="10" class="l"><a href="#10">10: </a><span class="php-keyword1">interface</span> ConfigurableInterface
+</span><span id="11" class="l"><a href="#11">11: </a>{
+</span><span id="12" class="l"><a href="#12">12: </a>    <span class="php-comment">/**
+</span></span><span id="13" class="l"><a href="#13">13: </a><span class="php-comment">     * Sets the object's configuration container.
+</span></span><span id="14" class="l"><a href="#14">14: </a><span class="php-comment">     *
+</span></span><span id="15" class="l"><a href="#15">15: </a><span class="php-comment">     * @param  mixed $config The Config object or dataset.
+</span></span><span id="16" class="l"><a href="#16">16: </a><span class="php-comment">     * @return ConfigurableInterface Chainable
+</span></span><span id="17" class="l"><a href="#17">17: </a><span class="php-comment">     */</span>
+</span><span id="18" class="l"><a href="#18">18: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setConfig(<span class="php-var">$config</span>);
+</span><span id="19" class="l"><a href="#19">19: </a>
+</span><span id="20" class="l"><a href="#20">20: </a>    <span class="php-comment">/**
+</span></span><span id="21" class="l"><a href="#21">21: </a><span class="php-comment">     * Gets the object's configuration container or a specific key from the container.
+</span></span><span id="22" class="l"><a href="#22">22: </a><span class="php-comment">     *
+</span></span><span id="23" class="l"><a href="#23">23: </a><span class="php-comment">     * @param  string|null $key If provided, the data key to retrieve.
+</span></span><span id="24" class="l"><a href="#24">24: </a><span class="php-comment">     * @return mixed If $key is NULL, the Config object is returned.
+</span></span><span id="25" class="l"><a href="#25">25: </a><span class="php-comment">     *     If $key is given, its value on the Config object is returned.
+</span></span><span id="26" class="l"><a href="#26">26: </a><span class="php-comment">     */</span>
+</span><span id="27" class="l"><a href="#27">27: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> config(<span class="php-var">$key</span> = <span class="php-keyword1">null</span>);
+</span><span id="28" class="l"><a href="#28">28: </a>}
+</span><span id="29" class="l"><a href="#29">29: </a></span></code></pre>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?8666cb478b51c5c9c5caa6d46d68c861c2206f0f"></script>
+<script src="elementlist.js?39e342c4f2eac7f76cf8a7b49ad061a0da71975a"></script>
+</body>
+</html>
