@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li class="active"><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -97,6 +99,11 @@
 	<h1>Trait SeparatorAwareTrait</h1>
 
 
+	<div class="description">
+	<p>Provides an object with the ability to perform lookups into multi-dimensional arrays.</p>
+
+<p>This is a full implementation of <code><a href="class-Charcoal.Config.SeparatorAwareInterface.html">Charcoal\Config\SeparatorAwareInterface</a></code>.</p>
+	</div>
 
 
 
@@ -120,7 +127,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#9-117" title="Go to source code">Charcoal/Config/SeparatorAwareTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#7-135" title="Go to source code">Charcoal/Config/SeparatorAwareTrait.php</a>
 		<br>
 	</div>
 
@@ -140,20 +147,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSeparator">#</a>
-		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#23-42" title="Go to source code">setSeparator</a>( <span>string <var>$separator</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#23-47" title="Go to source code">setSeparator</a>( <span>string <var>$separator</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Sets the token for traversing a data-tree.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sets the token for traversing a data-tree.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$separator</var></dt>
-					<dd>A single-character to delimit nested options.</dd>
+					<dd><p>The single-character token to delimit nested data.
+    If the token is an empty string, data-tree traversal is disabled.</p></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -163,7 +171,7 @@
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If $separator is invalid.
+					InvalidArgumentException<br>If the $separator is invalid.
 				</div>
 
 
@@ -183,59 +191,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_separator">#</a>
-		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#44-50" title="Go to source code">separator</a>( )</code>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#49-57" title="Go to source code">separator</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Gets the token for traversing a data-tree, if any.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Gets the token for traversing a data-tree, if any.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
 					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getWithSeparator" id="_getWithSeparator">
-
-		<td class="attributes"><code>
-			final protected 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getWithSeparator">#</a>
-		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#52-70" title="Go to source code">getWithSeparator</a>( <span>string <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed<br>The value (or null)
 				</div>
 
 
@@ -256,28 +225,79 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasWithSeparator">#</a>
-		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#72-90" title="Go to source code">hasWithSeparator</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#59-81" title="Go to source code">hasWithSeparator</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Determines if this store contains the key-path and if its value is not NULL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Determines if this store contains the key-path and if its value is not NULL.</p>
+
+<p>Traverses each node in the key-path until the endpoint is located.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The key-path to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>TRUE if $key exists and has a value other than NULL, FALSE otherwise.
 				</div>
 
 
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetExists">Charcoal\Config\AbstractConfig::offsetExists()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWithSeparator" id="_getWithSeparator">
+
+		<td class="attributes"><code>
+			final protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWithSeparator">#</a>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#83-105" title="Go to source code">getWithSeparator</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns the value from the key-path found on this object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the value from the key-path found on this object.</p>
+
+<p>Traverses each node in the key-path until the endpoint is located.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The key-path to retrieve.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>Value of the requested $key on success, NULL if the $key is not set.
+				</div>
+
+
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetGet">Charcoal\Config\AbstractConfig::offsetGet()</a></code><br>
+				</div>
 
 
 		</div>
@@ -295,30 +315,32 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setWithSeparator">#</a>
-		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#92-116" title="Go to source code">setWithSeparator</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#107-134" title="Go to source code">setWithSeparator</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Assign a value to the key-path, replacing / merging existing data with the same endpoint.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Assign a value to the key-path, replacing / merging existing data with the same endpoint.</p>
+
+<p>Traverses, in reverse, each node in the key-path from the endpoint.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key to assign $value to.</dd>
+					<dd>The key-path to assign $value to.</dd>
 					<dt><var>$value</var></dt>
-					<dd>Value to assign to $key.</dd>
+					<dd>The data value to assign to $key.</dd>
 				</dl></div>
 
 
-				<h4>Throws</h4>
-				<div class="list">
-					Exception<br>If a value already exists and is scalar (can not be merged).
-				</div>
 
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetSet">Charcoal\Config\AbstractConfig::offsetSet()</a></code><br>
+				</div>
 
 
 		</div>
@@ -349,11 +371,11 @@
 				<a href="source-class-Charcoal.Config.SeparatorAwareTrait.html#14-21" title="Go to source code"><var>$separator</var></a>
 
 			<div class="description short">
-				<p>Delimiter for accessing nested options.</p>
+				<p>Token for accessing nested data.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Delimiter for accessing nested options.</p>
+				<p>Token for accessing nested data.</p>
 
 <p>Is empty by default (which disables the separator feature).</p>
 

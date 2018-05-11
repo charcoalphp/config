@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -101,11 +103,11 @@
 <caption>Classes summary</caption>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.AbstractConfig.html">AbstractConfig</a></td>
-	<td>Configuration container / registry.</td>
+	<td>Default configuration container / registry.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.AbstractEntity.html">AbstractEntity</a></td>
-	<td>Default Charcoal core entity (data container).</td>
+	<td>Default data model.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.GenericConfig.html">GenericConfig</a></td>
@@ -117,23 +119,27 @@
 <caption>Interfaces summary</caption>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.ConfigInterface.html">ConfigInterface</a></td>
-	<td>Config Interface</td>
+	<td>Describes a configuration container / registry.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></td>
-	<td>Configurable Interface defines object that can be configured with a Config object.</td>
+	<td>Describes an object that can be configured with an instance of <code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></td>
-	<td></td>
+	<td>Describes an object that can perform lookups in other objects.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></td>
-	<td></td>
+	<td>Describes a conceptual data model.</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></td>
+	<td>Describes an object that can read file contents.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></td>
-	<td></td>
+	<td>Describes an object that can perform lookups into multi-dimensional arrays.</td>
 </tr>
 </table>
 
@@ -141,15 +147,19 @@
 <caption>Traits summary</caption>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></td>
-	<td>An implementation, as Trait, of the <code>ConfigurableInterface</code>.</td>
+	<td>Provides an object with a ConfigInterface configuration container.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></td>
-	<td></td>
+	<td>Provides an object with the ability to perform lookups in other objects.</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></td>
+	<td>Provides an object with the ability to read file contents.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></td>
-	<td></td>
+	<td>Provides an object with the ability to perform lookups into multi-dimensional arrays.</td>
 </tr>
 </table>
 
@@ -163,6 +173,6 @@
 </div>
 </div>
 <script src="resources/combined.js?8666cb478b51c5c9c5caa6d46d68c861c2206f0f"></script>
-<script src="elementlist.js?980f7cd6b1202dd663063d53eb3c8aacaa8ab623"></script>
+<script src="elementlist.js?39e342c4f2eac7f76cf8a7b49ad061a0da71975a"></script>
 </body>
 </html>

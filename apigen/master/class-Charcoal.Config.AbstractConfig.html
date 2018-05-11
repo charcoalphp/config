@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -98,11 +100,20 @@
 
 
 	<div class="description">
-	<p>Configuration container / registry.</p>
+	<p>Default configuration container / registry.</p>
 
-<p>An abstract class that fulfills the full ConfigInterface.</p>
+<h3>Notes on <code><a href="class-Charcoal.Config.SeparatorAwareTrait.html">Charcoal\Config\SeparatorAwareTrait</a></code>:</h3>
 
-<p>This class also implements the <code>ArrayAccess</code> interface, so each member can be accessed with <code>[]</code>.</p>
+<ul>
+<li>Provides the ability for a store to fetch data that is nested in a tree-like structure, often referred to as "dot" notation.</li>
+</ul>
+
+<h3>Notes on <code><a href="class-Charcoal.Config.DelegatesAwareTrait.html">Charcoal\Config\DelegatesAwareTrait</a></code>:</h3>
+
+<ul>
+<li>Provides the ability for a store to fetch data in another store.</li>
+<li>Provides this store with a way to register one or more delegate stores.</li>
+</ul>
 	</div>
 
 	<dl class="tree">
@@ -120,12 +131,14 @@
 			 implements 
 				<a href="class-Charcoal.Config.ConfigInterface.html"><span>Charcoal\Config\ConfigInterface</span></a>, 
 			
-<span>Interop\Container\ContainerInterface</span>, 
+<span>Psr\Container\ContainerInterface</span>, 
 			
 <span>IteratorAggregate</span>
 			
 			 uses 
 					<a href="class-Charcoal.Config.DelegatesAwareTrait.html"><span>Charcoal\Config\DelegatesAwareTrait</span></a>, 
+			
+					<a href="class-Charcoal.Config.FileAwareTrait.html"><span>Charcoal\Config\FileAwareTrait</span></a>, 
 			
 					<a href="class-Charcoal.Config.SeparatorAwareTrait.html"><span>Charcoal\Config\SeparatorAwareTrait</span></a>
 			
@@ -149,7 +162,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.AbstractConfig.html#17-376" title="Go to source code">Charcoal/Config/AbstractConfig.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.AbstractConfig.html#13-313" title="Go to source code">Charcoal/Config/AbstractConfig.php</a>
 		<br>
 	</div>
 
@@ -169,7 +182,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#34-68" title="Go to source code">__construct</a>( <span>mixed <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$delegates</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#37-75" title="Go to source code">__construct</a>( <span>mixed <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$delegates</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Create the configuration.</p>
@@ -182,7 +195,8 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd>Optional default data. Either a filename, an array, or a Config object.</dd>
+					<dd><p>Initial data. Either a filepath,
+    an associative array, or an Traversable iterable object.</p></dd>
 					<dt><var>$delegates</var></dt>
 					<dd>An array of delegates (config) to set.</dd>
 				</dl></div>
@@ -198,6 +212,133 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="defaults" id="_defaults">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaults">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#77-89" title="Go to source code">defaults</a>( )</code>
+
+		<div class="description short">
+			<p>Gets all default data from this store.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Gets all default data from this store.</p>
+
+<p>Pre-populates new stores.</p>
+
+<p>May be reimplemented in inherited classes if any default values should be defined.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>Key-value array of data
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_defaults">Charcoal\Config\ConfigInterface::defaults()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#91-106" title="Go to source code">merge</a>( <span>array|Traversable <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Adds new data, replacing / merging existing data with the same key.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds new data, replacing / merging existing data with the same key.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><p>Key-value dataset to merge.
+    Either an associative array or an Traversable iterable object
+    (such as <code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>).</p></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetReplace">Charcoal\Config\AbstractConfig::offsetReplace()</a></code><br>
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_merge">Charcoal\Config\ConfigInterface::merge()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+
+			ArrayIterator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#108-117" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			<p>Create a new iterator from the configuration instance.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a new iterator from the configuration instance.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					ArrayIterator
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						IteratorAggregate<br>
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>IteratorAggregate::getIterator()</code></div>
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="offsetExists" id="_offsetExists">
 
 		<td class="attributes"><code>
@@ -210,35 +351,44 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#70-100" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#119-164" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Determine if a configuration key exists.</p>
+			<p>Determines if this store contains the specified key and if its value is not NULL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Determine if a configuration key exists.</p>
+			<p>Determines if this store contains the specified key and if its value is not NULL.</p>
+
+<p>Routine:
+- If the data key is <a href="SeparatorAwareTrait::$separator">nested</a>, the data-tree is traversed until the endpoint is found, if any;
+- If the data key does NOT exist on the store, a lookup is performed on each delegate store until a key is found, if any.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The data key to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>TRUE if $key exists and has a value other than NULL, FALSE otherwise.
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetExists()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.SeparatorAwareTrait.html#_hasWithSeparator">Charcoal\Config\SeparatorAwareTrait::hasWithSeparator()</a></code><br>
+						<code><a href="class-Charcoal.Config.DelegatesAwareTrait.html#_hasInDelegates">Charcoal\Config\DelegatesAwareTrait::hasInDelegates()</a></code><br>
 				</div>
 
 				<h4>Overrides</h4>
@@ -259,35 +409,44 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#102-131" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#166-210" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Find an entry of the configuration by its key and retrieve it.</p>
+			<p>Returns the value from the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Find an entry of the configuration by its key and retrieve it.</p>
+			<p>Returns the value from the specified key on this entity.</p>
+
+<p>Routine:
+- If the data key is <a href="SeparatorAwareTrait::$separator">nested</a>, the data-tree is traversed until the endpoint to return its value, if any;
+- If the data key does NOT exist on the store, a lookup is performed on each delegate store until a value is found, if any.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The data key to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed<br>The value (or null)
+					mixed<br>Value of the requested $key on success, NULL if the $key is not set.
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetGet()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.SeparatorAwareTrait.html#_getWithSeparator">Charcoal\Config\SeparatorAwareTrait::getWithSeparator()</a></code><br>
+						<code><a href="class-Charcoal.Config.DelegatesAwareTrait.html#_getInDelegates">Charcoal\Config\DelegatesAwareTrait::getInDelegates()</a></code><br>
 				</div>
 
 				<h4>Overrides</h4>
@@ -308,41 +467,102 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#133-172" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#212-254" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			<p>Assign a value to the specified key of the configuration.</p>
+			<p>Assigns the value to the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Assign a value to the specified key of the configuration.</p>
+			<p>Assigns the value to the specified key on this entity.</p>
 
-<p>Set the value either by:
-- a setter method (<code>set_{$key}()</code>)
-- setting (or overriding)</p>
+<p>Routine:
+- If the data key is <a href="SeparatorAwareTrait::$separator">nested</a>, the data-tree is traversed until the endpoint to assign its value;</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key to assign $value to.</dd>
+					<dd>The data key to assign $value to.</dd>
 					<dt><var>$value</var></dt>
-					<dd>Value to assign to $key.</dd>
+					<dd>The data value to assign to $key.</dd>
 				</dl></div>
 
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetSet()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.SeparatorAwareTrait.html#_setWithSeparator">Charcoal\Config\SeparatorAwareTrait::setWithSeparator()</a></code><br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetReplace">Charcoal\Config\AbstractConfig::offsetReplace()</a></code><br>
 				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">Charcoal\Config\AbstractEntity::offsetSet()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetReplace" id="_offsetReplace">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetReplace">#</a>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#256-294" title="Go to source code">offsetReplace</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Replaces the value from the specified key.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Replaces the value from the specified key.</p>
+
+<p>Routine:
+- When the value in the Config and the new value are both arrays, the method will replace their respective value recursively.
+- Then or otherwise, the new value is <a href="self::offsetSet()">assigned</a> to the Config.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The data key to assign or merge $value to.</dd>
+					<dt><var>$value</var></dt>
+					<dd>The data value to assign to or merge with $key.</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
+				</div>
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetSet">Charcoal\Config\AbstractConfig::offsetSet()</a></code><br>
+						array_replace_recursive()<br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractConfig.html#_merge">Charcoal\Config\AbstractConfig::merge()</a></code><br>
+				</div>
+
 
 		</div>
 		</div></td>
@@ -359,22 +579,22 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addFile">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#175-191" title="Go to source code">addFile</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#296-312" title="Go to source code">addFile</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
-			<p>Add a configuration file. The file type is determined by its extension.</p>
+			<p>Adds a configuration file to the configset.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Add a configuration file. The file type is determined by its extension.</p>
+			<p>Adds a configuration file to the configset.</p>
 
-<p>Supported file types are <code>ini</code>, <code>json</code>, <code>php</code></p>
+<p>Natively supported file formats: INI, JSON, PHP.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$filename</var></dt>
-					<dd>A supported configuration file.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The file to load and add.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -382,188 +602,15 @@
 					<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
 				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If the file is invalid.
-				</div>
 
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.FileAwareTrait.html#_loadFile">Charcoal\Config\FileAwareTrait::loadFile()</a></code><br>
+				</div>
 
 
 				<h4>Implementation of</h4>
 				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_addFile">Charcoal\Config\ConfigInterface::addFile()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="loadFile" id="_loadFile">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_loadFile">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#193-233" title="Go to source code">loadFile</a>( <span>string <var>$filename</var></span> )</code>
-
-		<div class="description short">
-			<p>Load a configuration file. The file type is determined by its extension.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Load a configuration file. The file type is determined by its extension.</p>
-
-<p>Supported file types are <code>ini</code>, <code>json</code>, <code>php</code></p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$filename</var></dt>
-					<dd>A supported configuration file.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If the filename is invalid.
-				</div>
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_loadFile">Charcoal\Config\ConfigInterface::loadFile()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="merge" id="_merge">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_merge">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#235-254" title="Go to source code">merge</a>( <span>array|Traversable|<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code> <var>$data</var></span> )</code>
-
-		<div class="description short">
-			<p>For each key, calls <code>set()</code>, which calls <code>offsetSet()</code>  (from ArrayAccess).</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>For each key, calls <code>set()</code>, which calls <code>offsetSet()</code>  (from ArrayAccess).</p>
-
-<p>The provided <code>$data</code> can be a simple array or an object which implements <code>Traversable</code>
-(such as a <code>ConfigInterface</code> instance).</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$data</var></dt>
-					<dd>The data to set.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code>
-				</div>
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Config.AbstractConfig.html#_offsetSet">Charcoal\Config\AbstractConfig::offsetSet()</a></code><br>
-				</div>
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_merge">Charcoal\Config\ConfigInterface::merge()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="defaults" id="_defaults">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_defaults">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#257-268" title="Go to source code">defaults</a>( )</code>
-
-		<div class="description short">
-			<p>A stub for when the default data is empty.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>A stub for when the default data is empty.</p>
-
-<p>Make sure to reimplement in children ConfigInterface classes if any default data should be set.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Config.ConfigInterface.html#_defaults">Charcoal\Config\ConfigInterface::defaults()</a></code><br>
-				</div>
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Config.ConfigInterface.html#_defaults">Charcoal\Config\ConfigInterface::defaults()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getIterator" id="_getIterator">
-
-		<td class="attributes"><code>
-			 public 
-
-			ArrayIterator
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractConfig.html#270-278" title="Go to source code">getIterator</a>( )</code>
-
-		<div class="description short">
-			<p>IteratorAggregate > getIterator()</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>IteratorAggregate > getIterator()</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					ArrayIterator
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code>IteratorAggregate::getIterator()</code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -596,6 +643,14 @@
 	</tr>
 	</table>
 	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.FileAwareInterface.html#methods">Charcoal\Config\FileAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.FileAwareInterface.html#_loadFile">loadFile()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-Charcoal.Config.DelegatesAwareInterface.html#methods">Charcoal\Config\DelegatesAwareInterface</a></caption>
 	<tr>
 		<td><code>
@@ -615,6 +670,14 @@
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_hasInDelegates">hasInDelegates()</a>, 
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_prependDelegate">prependDelegate()</a>, 
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_setDelegates">setDelegates()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Config.FileAwareTrait.html#methods">Charcoal\Config\FileAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.FileAwareTrait.html#_loadFile">loadFile()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -643,7 +706,7 @@
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Config.AbstractConfig.html#32" title="Go to source code"><b>DEFAULT_SEPARATOR</b></a>
+				<a href="source-class-Charcoal.Config.AbstractConfig.html#35" title="Go to source code"><b>DEFAULT_SEPARATOR</b></a>
 			</code>
 
 			<div class="description short">

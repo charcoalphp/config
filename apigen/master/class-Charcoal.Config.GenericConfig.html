@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -117,12 +119,14 @@
 			 implements 
 				<a href="class-Charcoal.Config.ConfigInterface.html"><span>Charcoal\Config\ConfigInterface</span></a>, 
 			
-<span>Interop\Container\ContainerInterface</span>, 
+<span>Psr\Container\ContainerInterface</span>, 
 			
 <span>IteratorAggregate</span>
 			
 			 uses 
 					<a href="class-Charcoal.Config.DelegatesAwareTrait.html"><span>Charcoal\Config\DelegatesAwareTrait</span></a>, 
+			
+					<a href="class-Charcoal.Config.FileAwareTrait.html"><span>Charcoal\Config\FileAwareTrait</span></a>, 
 			
 					<a href="class-Charcoal.Config.SeparatorAwareTrait.html"><span>Charcoal\Config\SeparatorAwareTrait</span></a>
 			
@@ -163,10 +167,10 @@
 			<a href="class-Charcoal.Config.AbstractConfig.html#_addFile">addFile()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_defaults">defaults()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_getIterator">getIterator()</a>, 
-			<a href="class-Charcoal.Config.AbstractConfig.html#_loadFile">loadFile()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_merge">merge()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetExists">offsetExists()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetReplace">offsetReplace()</a>, 
 			<a href="class-Charcoal.Config.AbstractConfig.html#_offsetSet">offsetSet()</a>
 		</code></td>
 	</tr>
@@ -200,6 +204,14 @@
 	</tr>
 	</table>
 	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Config.FileAwareInterface.html#methods">Charcoal\Config\FileAwareInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.FileAwareInterface.html#_loadFile">loadFile()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-Charcoal.Config.SeparatorAwareInterface.html#methods">Charcoal\Config\SeparatorAwareInterface</a></caption>
 	<tr>
 		<td><code>
@@ -217,6 +229,14 @@
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_hasInDelegates">hasInDelegates()</a>, 
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_prependDelegate">prependDelegate()</a>, 
 			<a href="class-Charcoal.Config.DelegatesAwareTrait.html#_setDelegates">setDelegates()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Config.FileAwareTrait.html#methods">Charcoal\Config\FileAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Config.FileAwareTrait.html#_loadFile">loadFile()</a>
 		</code></td>
 	</tr>
 	</table>

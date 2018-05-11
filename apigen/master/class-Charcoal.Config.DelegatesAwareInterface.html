@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li class="active"><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -97,6 +99,11 @@
 	<h1>Interface DelegatesAwareInterface</h1>
 
 
+	<div class="description">
+	<p>Describes an object that can perform lookups in other objects.</p>
+
+<p>This interface can be fully implemented with its accompanying <code><a href="class-Charcoal.Config.DelegatesAwareTrait.html">Charcoal\Config\DelegatesAwareTrait</a></code>.</p>
+	</div>
 
 
 
@@ -121,7 +128,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#5-27" title="Go to source code">Charcoal/Config/DelegatesAwareInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#5-35" title="Go to source code">Charcoal/Config/DelegatesAwareInterface.php</a>
 		<br>
 	</div>
 
@@ -134,32 +141,32 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code>
+			<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDelegates">#</a>
-		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#10-14" title="Go to source code">setDelegates</a>( <span>array <var>$delegates</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#12-18" title="Go to source code">setDelegates</a>( <span>array <var>$delegates</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Appends a collection of delegare objects.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Appends a collection of delegare objects.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$delegates</var></dt>
-					<dd>The list of delegates to add.</dd>
+					<dd>One or more delegate objects to register.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code><br>Chainable.
+					<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code><br>Chainable
 				</div>
 
 
@@ -173,32 +180,32 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code>
+			<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addDelegate">#</a>
-		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#16-20" title="Go to source code">addDelegate</a>( <span><code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code> <var>$delegate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#20-26" title="Go to source code">addDelegate</a>( <span><code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code> <var>$delegate</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Appends a delegare object onto the delegate stack.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Appends a delegare object onto the delegate stack.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$delegate</var></dt>
-					<dd>A config object to add as delegate.</dd>
+					<dd>A delegate object to register.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code><br>Chainable
 				</div>
 
 
@@ -212,32 +219,32 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code>
+			<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prependDelegate">#</a>
-		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#22-26" title="Go to source code">prependDelegate</a>( <span><code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code> <var>$delegate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.DelegatesAwareInterface.html#28-34" title="Go to source code">prependDelegate</a>( <span><code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code> <var>$delegate</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Prepends a delegare object onto the delegate stack.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Prepends a delegare object onto the delegate stack.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$delegate</var></dt>
-					<dd>A config object to prepend as delegate.</dd>
+					<dd>A delegate object to register.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.EntityInterface.html">Charcoal\Config\EntityInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Config.DelegatesAwareInterface.html">Charcoal\Config\DelegatesAwareInterface</a></code><br>Chainable
 				</div>
 
 

@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li class="active"><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -97,6 +99,9 @@
 	<h1>Interface EntityInterface</h1>
 
 
+	<div class="description">
+	<p>Describes a conceptual data model.</p>
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -135,7 +140,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.EntityInterface.html#9-71" title="Go to source code">Charcoal/Config/EntityInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.EntityInterface.html#9-64" title="Go to source code">Charcoal/Config/EntityInterface.php</a>
 		<br>
 	</div>
 
@@ -158,11 +163,11 @@
 		<code><a href="source-class-Charcoal.Config.EntityInterface.html#17-22" title="Go to source code">keys</a>( )</code>
 
 		<div class="description short">
-			<p>Get the entity available keys.</p>
+			<p>Gets the data keys on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the entity available keys.</p>
+			<p>Gets the data keys on this entity.</p>
 
 
 
@@ -189,25 +194,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_data">#</a>
-		<code><a href="source-class-Charcoal.Config.EntityInterface.html#24-30" title="Go to source code">data</a>( <span>array <var>$filters</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Config.EntityInterface.html#24-30" title="Go to source code">data</a>( <span>array <var>$keys</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Gets the entity data, as associative array map.</p>
+			<p>Gets all data, or a subset, from this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Gets the entity data, as associative array map.</p>
+			<p>Gets all data, or a subset, from this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$filters</var></dt>
-					<dd>Optional. Property filters.</dd>
+					<dt><var>$keys</var></dt>
+					<dd>Optional. Extracts only the requested data.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The data map.
+					array<br>An associative array.
 				</div>
 
 
@@ -228,22 +233,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-Charcoal.Config.EntityInterface.html#32-40" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.EntityInterface.html#32-38" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
-			<p>Sets the entity data, from associative array map (or any other Traversable).</p>
+			<p>Sets data on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Sets the entity data, from associative array map (or any other Traversable).</p>
-
-<p>This function takes an array and fill the property with its value.</p>
+			<p>Sets data on this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd>The entity data.</dd>
+					<dd>An associative array.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -269,30 +272,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-Charcoal.Config.EntityInterface.html#42-52" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.EntityInterface.html#40-46" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Returns true if the container can return an entry for the given identifier.
-Returns false otherwise.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns true if the container can return an entry for the given identifier.
-Returns false otherwise.</p>
-
-<p><code>has($key)</code> returning true does not mean that <code>get($key)</code> will not throw an exception.
-It does however mean that <code>get($id)</code> will not throw a <code>NotFoundException</code>.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>Identifier of the entry to look for.</dd>
+					<dd>The data key to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>TRUE if $key exists and has a value other than NULL, FALSE otherwise.
 				</div>
 
 
@@ -313,37 +311,28 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-Charcoal.Config.EntityInterface.html#54-63" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.EntityInterface.html#48-54" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Finds an entry of the container by its identifier and returns it.</p>
+			<p>Find an entry of the configuration by its key and retrieve it.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Finds an entry of the container by its identifier and returns it.</p>
+			<p>Find an entry of the configuration by its key and retrieve it.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>Identifier of the entry to look for.</dd>
+					<dd>The data key to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed<br>Entry.
+					mixed<br>Value of the requested $key on success, NULL if the $key is not set.
 				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					NotFoundException<br>No entry was found for this identifier.<br>
-					ContainerException<br>Error while retrieving the entry.
-				</div>
 
-				<h4>See</h4>
-				<div class="list">
-						ContainerInterface::get()<br>
-				</div>
 
 
 		</div>
@@ -361,22 +350,22 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-Charcoal.Config.EntityInterface.html#65-70" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$val</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.EntityInterface.html#56-63" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Assign a value to the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Assign a value to the specified key on this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>Identifier of the entry to set.</dd>
-					<dt><var>$val</var></dt>
-					<dd>The value to set.</dd>
+					<dd>The data key to assign $value to.</dd>
+					<dt><var>$value</var></dt>
+					<dd>The data value to assign to $key.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>

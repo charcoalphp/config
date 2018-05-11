@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -98,7 +100,15 @@
 
 
 	<div class="description">
-	<p>Default Charcoal core entity (data container).</p>
+	<p>Default data model.</p>
+
+<h3>Notes on \ArrayAccess:</h3>
+
+<ul>
+<li>Keys SHOULD be formatted as "snake_case" (e.g., "first_name") or "camelCase" (e.g., "firstName"). and WILL be converted to the latter PSR-1 to access or assign values.</li>
+<li>Values are accessed and assigned via methods and properties which MUST be formatted as "camelCase", e.g.: <code>$firstName</code>, <code>firstName()</code>, <code>setFirstName()</code>.</li>
+<li>A key-value pair is internally passed to a (non-private / non-static) setter method (if present) or assigned to a (non-private / non-static) property (declared or not) and tracks affected keys.</li>
+</ul>
 	</div>
 
 	<dl class="tree">
@@ -132,7 +142,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.AbstractEntity.html#9-271" title="Go to source code">Charcoal/Config/AbstractEntity.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.AbstractEntity.html#8-326" title="Go to source code">Charcoal/Config/AbstractEntity.php</a>
 		<br>
 	</div>
 
@@ -152,14 +162,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_keys">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#21-29" title="Go to source code">keys</a>( )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#29-37" title="Go to source code">keys</a>( )</code>
 
 		<div class="description short">
-			<p>Get the configuration's available keys.</p>
+			<p>Gets the data keys on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the configuration's available keys.</p>
+			<p>Gets the data keys on this entity.</p>
 
 
 
@@ -188,28 +198,33 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_data">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#31-52" title="Go to source code">data</a>( <span>array <var>$filters</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#39-65" title="Go to source code">data</a>( <span>array <var>$keys</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Gets the entity data, as associative array map.</p>
+			<p>Gets all data, or a subset, from this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Gets the entity data, as associative array map.</p>
+			<p>Gets all data, or a subset, from this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$filters</var></dt>
-					<dd>Optional. Property filters.</dd>
+					<dt><var>$keys</var></dt>
+					<dd>Optional. Extracts only the requested data.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The data map.
+					array<br>Key-value array of data, excluding pairs with NULL values.
 				</div>
 
 
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetExists">Charcoal\Config\AbstractEntity::offsetExists()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetGet">Charcoal\Config\AbstractEntity::offsetGet()</a></code><br>
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -229,22 +244,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#54-69" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#67-85" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
-			<p>Sets the entity data, from associative array map.</p>
+			<p>Sets data on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Sets the entity data, from associative array map.</p>
-
-<p>This function takes an array and fill the property with its value.</p>
+			<p>Sets data on this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd>The entity data. Will call setters.</dd>
+					<dd>Key-value array of data to append.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -253,7 +266,7 @@
 				</div>
 
 
-				<h4>See</h4>
+				<h4>Uses</h4>
 				<div class="list">
 						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">Charcoal\Config\AbstractEntity::offsetSet()</a></code><br>
 				</div>
@@ -276,33 +289,32 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#71-84" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#87-97" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Returns true if the container can return an entry for the given identifier.
-Returns false otherwise.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns true if the container can return an entry for the given identifier.
-Returns false otherwise.</p>
-
-<p><code>has($key)</code> returning true does not mean that <code>get($key)</code> will not throw an exception.
-It does however mean that <code>get($id)</code> will not throw a <code>NotFoundException</code>.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>Identifier of the entry to look for.</dd>
+					<dd>The data key to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>TRUE if $key exists and has a value other than NULL, FALSE otherwise.
 				</div>
 
 
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetExists">Charcoal\Config\AbstractEntity::offsetExists()</a></code><br>
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -322,7 +334,7 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#86-96" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#99-109" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			<p>Find an entry of the configuration by its key and retrieve it.</p>
@@ -335,21 +347,16 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The data key to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					mixed<br>Value of the requested $key on success, NULL if the $key is not set.
 				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					NotFoundException<br>No entry was found for this identifier.<br>
-					ContainerException<br>Error while retrieving the entry.
-				</div>
 
-				<h4>See</h4>
+				<h4>Uses</h4>
 				<div class="list">
 						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetGet">Charcoal\Config\AbstractEntity::offsetGet()</a></code><br>
 				</div>
@@ -372,33 +379,31 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#98-112" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#111-123" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			<p>Assign a value to the specified key of the configuration.</p>
+			<p>Assign a value to the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Assign a value to the specified key of the configuration.</p>
-
-<p>Public method variant of setting by array key.</p>
+			<p>Assign a value to the specified key on this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key to assign $value to.</dd>
+					<dd>The data key to assign $value to.</dd>
 					<dt><var>$value</var></dt>
-					<dd>Value to assign to $key.</dd>
+					<dd>The data value to assign to $key.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.AbstractEntity.html">Charcoal\Config\AbstractEntity</a></code>
+					<code><a href="class-Charcoal.Config.AbstractEntity.html">Charcoal\Config\AbstractEntity</a></code><br>Chainable
 				</div>
 
 
-				<h4>See</h4>
+				<h4>Uses</h4>
 				<div class="list">
 						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">Charcoal\Config\AbstractEntity::offsetSet()</a></code><br>
 				</div>
@@ -421,35 +426,45 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#114-140" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#125-164" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Determine if a configuration key exists.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Determine if a configuration key exists.</p>
+			<p>Determines if this entity contains the specified key and if its value is not NULL.</p>
+
+<p>Routine:
+- If the entity has a getter method (e.g., "foo_bar" → <code>fooBar()</code>), its called and its value is checked;
+- If the entity has a property (e.g., <code>$fooBar</code>), its value is checked;
+- If the entity has neither, FALSE is returned.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The data key to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>TRUE if $key exists and has a value other than NULL, FALSE otherwise.
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetExists()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_data">Charcoal\Config\AbstractEntity::data()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_has">Charcoal\Config\AbstractEntity::has()</a></code><br>
 				</div>
 
 
@@ -468,35 +483,45 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#142-169" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#166-204" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>Find an entry of the configuration by its key and retrieve it.</p>
+			<p>Returns the value from the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Find an entry of the configuration by its key and retrieve it.</p>
+			<p>Returns the value from the specified key on this entity.</p>
+
+<p>Routine:
+- If the entity has a getter method (e.g., "foo_bar" → <code>fooBar()</code>), its called and returns its value;
+- If the entity has a property (e.g., <code>$fooBar</code>), its value is returned;
+- If the entity has neither, NULL is returned.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to look for.</dd>
+					<dd>The data key to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed<br>The value (or null)
+					mixed<br>Value of the requested $key on success, NULL if the $key is not set.
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetGet()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_data">Charcoal\Config\AbstractEntity::data()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_get">Charcoal\Config\AbstractEntity::get()</a></code><br>
 				</div>
 
 
@@ -515,37 +540,44 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#171-206" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#206-244" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			<p>Assign a value to the specified key of the configuration.</p>
+			<p>Assigns the value to the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Assign a value to the specified key of the configuration.</p>
+			<p>Assigns the value to the specified key on this entity.</p>
 
-<p>Set the value either by:
-- a setter method (<code>set_{$key}()</code>)
-- setting (or overriding)</p>
+<p>Routine:
+- The data key is added to the <a href="self::$keys">entity&#039;s key pool</a>.
+- If the entity has a setter method (e.g., "foo_bar" → <code>setFooBar()</code>), its called and passed the value;
+- If the entity has NO setter method, the value is assigned to a property (e.g., <code>$fooBar</code>).</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key to assign $value to.</dd>
+					<dd>The data key to assign $value to.</dd>
 					<dt><var>$value</var></dt>
-					<dd>Value to assign to $key.</dd>
+					<dd>The data value to assign to $key.</dd>
 				</dl></div>
 
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
 				<h4>See</h4>
 				<div class="list">
-						ArrayAccess::offsetSet()<br>
+						\ArrayAccess<br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_setData">Charcoal\Config\AbstractEntity::setData()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_set">Charcoal\Config\AbstractEntity::set()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetUnset">Charcoal\Config\AbstractEntity::offsetUnset()</a></code><br>
 				</div>
 
 
@@ -564,28 +596,40 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetUnset">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#208-225" title="Go to source code">offsetUnset</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#246-276" title="Go to source code">offsetUnset</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
-			<p>ArrayAccess > offsetUnset()</p>
+			<p>Removes the value from the specified key on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>ArrayAccess > offsetUnset()</p>
+			<p>Removes the value from the specified key on this entity.</p>
+
+<p>Routine:
+- The data key is removed from the <a href="self::$keys">entity&#039;s key pool</a>.
+- NULL is <a href="self::offsetSet()">assigned</a> to the entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>The key of the configuration item to remove.</dd>
+					<dd>The data key to remove.</dd>
 				</dl></div>
 
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the key argument is not a string or is a "numeric" value.
+					InvalidArgumentException<br>If the $key is not a string or is a numeric value.
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						\ArrayAccess<br>
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Charcoal.Config.AbstractEntity.html#_offsetSet">Charcoal\Config\AbstractEntity::offsetSet()</a></code><br>
+				</div>
 
 
 		</div>
@@ -603,23 +647,27 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_jsonSerialize">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#226-234" title="Go to source code">jsonSerialize</a>( )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#278-287" title="Go to source code">jsonSerialize</a>( )</code>
 
 		<div class="description short">
-			<p>JsonSerializable > jsonSerialize()</p>
+			<p>Gets the data that can be serialized with json_encode().</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>JsonSerializable > jsonSerialize()</p>
+			<p>Gets the data that can be serialized with json_encode().</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					array
+					array<br>Key-value array of data.
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						\JsonSerializable<br>
+				</div>
 
 
 		</div>
@@ -637,23 +685,27 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_serialize">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#236-244" title="Go to source code">serialize</a>( )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#289-298" title="Go to source code">serialize</a>( )</code>
 
 		<div class="description short">
-			<p>Serializable > serialize()</p>
+			<p>Serializes the data on this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Serializable > serialize()</p>
+			<p>Serializes the data on this entity.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					string<br>Returns a string containing a byte-stream representation of the object.
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						\Serializable<br>
+				</div>
 
 
 		</div>
@@ -671,24 +723,28 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unserialize">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#246-256" title="Go to source code">unserialize</a>( <span>string <var>$serialized</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#300-311" title="Go to source code">unserialize</a>( <span>string <var>$data</var></span> )</code>
 
 		<div class="description short">
-			<p>Serializable > unserialize()</p>
+			<p>Applies the serialized data to this entity.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Serializable > unserialize()</p>
+			<p>Applies the serialized data to this entity.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$serialized</var></dt>
-					<dd>The serialized data (with <code>serialize()</code>).</dd>
+					<dt><var>$data</var></dt>
+					<dd>The serialized data to extract.</dd>
 				</dl></div>
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						\Serializable<br>
+				</div>
 
 
 		</div>
@@ -706,25 +762,25 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 
 		<td class="name"><div>
 		<a class="anchor" href="#_camelize">#</a>
-		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#258-270" title="Go to source code">camelize</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.AbstractEntity.html#313-325" title="Go to source code">camelize</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
-			<p>Transform a snake_case string to camelCase.</p>
+			<p>Transform a string from "snake_case" to "camelCase".</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Transform a snake_case string to camelCase.</p>
+			<p>Transform a string from "snake_case" to "camelCase".</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$str</var></dt>
-					<dd>The snake_case string to camelize.</dd>
+					<dd>The string to camelize.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>The camelcase'd string.
+					string<br>The camelized string.
 				</div>
 
 
@@ -755,14 +811,14 @@ It does however mean that <code>get($id)</code> will not throw a <code>NotFoundE
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Config.AbstractEntity.html#15-19" title="Go to source code"><var>$keys</var></a>
+				<a href="source-class-Charcoal.Config.AbstractEntity.html#22-27" title="Go to source code"><var>$keys</var></a>
 
 			<div class="description short">
-				<p>Keep a list of all config keys available.</p>
+				<p>Holds a list of all data keys.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Keep a list of all config keys available.</p>
+				<p>Holds a list of all data keys.</p>
 
 			</div>
 		</td>

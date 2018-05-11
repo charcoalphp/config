@@ -50,6 +50,7 @@
 				<li><a href="class-Charcoal.Config.ConfigurableInterface.html">ConfigurableInterface</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareInterface.html">DelegatesAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.EntityInterface.html">EntityInterface</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareInterface.html">FileAwareInterface</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareInterface.html">SeparatorAwareInterface</a></li>
 			</ul>
 
@@ -57,6 +58,7 @@
 			<ul>
 				<li class="active"><a href="class-Charcoal.Config.ConfigurableTrait.html">ConfigurableTrait</a></li>
 				<li><a href="class-Charcoal.Config.DelegatesAwareTrait.html">DelegatesAwareTrait</a></li>
+				<li><a href="class-Charcoal.Config.FileAwareTrait.html">FileAwareTrait</a></li>
 				<li><a href="class-Charcoal.Config.SeparatorAwareTrait.html">SeparatorAwareTrait</a></li>
 			</ul>
 
@@ -98,9 +100,9 @@
 
 
 	<div class="description">
-	<p>An implementation, as Trait, of the <code>ConfigurableInterface</code>.</p>
+	<p>Provides an object with a ConfigInterface configuration container.</p>
 
-<p>This Trait contains one additional abstract (protected) function: <code>create_config()</code></p>
+<p>This is a full implementation of <code><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></code>.</p>
 	</div>
 
 
@@ -117,7 +119,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Config.html">Config</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Config.ConfigurableTrait.html#12-79" title="Go to source code">Charcoal/Config/ConfigurableTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Config.ConfigurableTrait.html#7-86" title="Go to source code">Charcoal/Config/ConfigurableTrait.php</a>
 		<br>
 	</div>
 
@@ -130,32 +132,32 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></code>
+			<code><a href="class-Charcoal.Config.ConfigurableTrait.html">Charcoal\Config\ConfigurableTrait</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setConfig">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#24-43" title="Go to source code">setConfig</a>( <span><code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>|array <var>$config</var></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#21-45" title="Go to source code">setConfig</a>( <span>mixed <var>$config</var></span> )</code>
 
 		<div class="description short">
-			<p>Set the object's configuration container.</p>
+			<p>Sets the object's configuration container.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Set the object's configuration container.</p>
+			<p>Sets the object's configuration container.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$config</var></dt>
-					<dd>The datas to set.</dd>
+					<dd>The Config object, datamap, or filepath.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.ConfigurableInterface.html">Charcoal\Config\ConfigurableInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Config.ConfigurableTrait.html">Charcoal\Config\ConfigurableTrait</a></code><br>Chainable
 				</div>
 
 				<h4>Throws</h4>
@@ -173,43 +175,39 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_config">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#45-66" title="Go to source code">config</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#47-73" title="Go to source code">config</a>( <span>string|null <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Retrieve the object's configuration container, or one of its entry.</p>
+			<p>Gets the object's configuration container or a specific key from the container.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the object's configuration container, or one of its entry.</p>
-
-<p>If the object has no existing config, create one.</p>
-
-<p>If a key is provided, return the configuration key value instead of the full object.</p>
+			<p>Gets the object's configuration container or a specific key from the container.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd>Optional. If provided, the config key value will be returned, instead of the full object.</dd>
+					<dd>If provided, the data key to retrieve.</dd>
+					<dt><var>$default</var></dt>
+					<dd>The fallback value to return if $key does not exist.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>
+					mixed<br><p>If $key is NULL, the Config object is returned.
+    If $key is given, its value on the Config object is returned.
+    If the value of $key is NULL, the value of $default is returned.</p>
 				</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						self::create_config()<br>
-				</div>
 
 
 		</div>
@@ -227,31 +225,31 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createConfig">#</a>
-		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#68-78" title="Go to source code">createConfig</a>( <span>array|string|null <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Config.ConfigurableTrait.html#75-85" title="Go to source code">createConfig</a>( <span>mixed <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Retrieve a new ConfigInterface instance for the object.</p>
+			<p>Create a new ConfigInterface instance for the object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve a new ConfigInterface instance for the object.</p>
+			<p>Create a new ConfigInterface instance for the object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd>Optional data to pass to the new ConfigInterface instance.</dd>
+					<dd>Initial data. Either a filepath, a datamap, or a Config object.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code>
+					<code><a href="class-Charcoal.Config.ConfigInterface.html">Charcoal\Config\ConfigInterface</a></code><br>A new Config object.
 				</div>
 
 
 				<h4>See</h4>
 				<div class="list">
-						<code><a href="class-Charcoal.Config.AbstractConfig.html#___construct">Charcoal\Config\AbstractConfig::__construct()</a></code><br>
+						<code><a href="class-Charcoal.Config.AbstractConfig.html">Charcoal\Config\AbstractConfig</a></code><br>
 				</div>
 
 
