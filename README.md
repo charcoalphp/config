@@ -90,7 +90,7 @@ Examples: application preferences, service options, and factory settings.
 
 ## Features
 
--   [Read data from INI, JSON, PHP, and YAML files](#file-loader)
+-   [Read data from INI, JSON, PHP, YAML, and XML files](#file-loader)
 -   [Customizable separator for nested lookup](#key-separator-lookup)
 -   [Share configuration entries](#delegates-lookup)
 -   [Array accessible entities](#array-access)
@@ -101,7 +101,7 @@ Examples: application preferences, service options, and factory settings.
 
 ### File Loader
 
-The _Config_ container currently supports four file formats: INI, JSON, PHP, and YAML.
+The _Config_ container currently supports four file formats: INI, JSON, PHP, YAML, and XML.
 
 A configuration file can be imported into a Config object via the `addFile($path)` method, or by direct instantiation:
 

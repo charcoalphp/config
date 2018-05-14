@@ -296,7 +296,7 @@ abstract class AbstractConfig extends AbstractEntity implements
     /**
      * Adds a configuration file to the configset.
      *
-     * Natively supported file formats: INI, JSON, PHP.
+     * Natively supported file formats: INI, JSON, PHP, XML.
      *
      * @uses   FileAwareTrait::loadFile()
      * @param  string $path The file to load and add.

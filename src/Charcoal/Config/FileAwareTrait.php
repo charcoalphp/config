@@ -15,7 +15,7 @@ use Symfony\Component\Yaml\Parser as YamlParser;
 /**
  * Provides an object with the ability to read file contents.
  *
- * Supported file formats: INI, JSON, PHP, YAML*.
+ * Supported file formats: INI, JSON, PHP, XML, YAML*.
  *
  * Note: YAML requires the {@link https://packagist.org/packages/symfony/yaml Symfony YAML component}.
  *
@@ -58,9 +58,12 @@ trait FileAwareTrait
             case 'yml':
             case 'yaml':
                 return $this->loadYamlFile($path);
+
+            case 'xml':
+                return $this->loadXmlFile($path);
         }
 
-        $validConfigExts = [ 'ini', 'json', 'php', 'yml' ];
+        $validConfigExts = [ 'ini', 'json', 'php', 'yml', 'xml' ];
         throw new InvalidArgumentException(sprintf(
             'Unsupported file format for "%s"; must be one of "%s"',
             $path,
@@ -169,6 +172,44 @@ trait FileAwareTrait
         } catch (Exception $e) {
             $message = sprintf('YAML file "%s" could not be parsed: %s', $path, $e->getMessage());
             throw new UnexpectedValueException($message, 0, $e);
+        }
+
+        if (!is_array($data)) {
+            return [];
+        }
+
+        return $data;
+    }
+
+    /**
+     * Load a XML file as an array.
+     *
+     * @param  string $path A path to a XML file.
+     * @throws UnexpectedValueException If the file can not correctly be parsed into an array.
+     * @return array An array on success.
+     *     If the file is parsed as any other type, an empty array is returned.
+     */
+    private function loadXmlFile($path)
+    {
+        $data = null;
+        $xml  = file_get_contents($path);
+        if ($xml) {
+            $internalErrors  = libxml_use_internal_errors(true);
+            $disableEntities = libxml_disable_entity_loader(true);
+            libxml_clear_errors();
+
+            $data = simplexml_load_string($xml, null, LIBXML_NOERROR);
+            if ($data === false) {
+                $error = libxml_get_last_error();
+                throw new UnexpectedValueException(
+                    sprintf('XML file "%s" could not be parsed: %s', $path, $error->message)
+                );
+            }
+
+            libxml_use_internal_errors($internalErrors);
+            libxml_disable_entity_loader($disableEntities);
+
+            $data = json_decode(json_encode($data), true);
         }
 
         if (!is_array($data)) {

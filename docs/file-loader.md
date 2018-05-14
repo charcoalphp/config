@@ -15,6 +15,7 @@ Array data can be parsed from files depending on the file extension. This is use
 -   [JSON](#json-configuration-files)
 -   [PHP](#php-configuration-files)
 -   [YAML](#yaml-configuration-files)
+-   [XML](#xml-configuration-files)
 
 
 
@@ -213,5 +214,44 @@ echo $cfg['host']; // "localhost"
 echo $cfg['database']['name']; // "mydb"
 var_export($cfg['database']['drivers']); // [ "pdo_mysql", "pdo_pgsql", "pdo_sqlite" ]
 ```
+
+
+
+## XML Configuration Files
+
+For the XML format, the Config uses the [`simplexml_load_file()`](https://php.net/simplexml_load_file), [`json_encode()`](https://php.net/json_encode), and [`json_decode()`](https://php.net/json_decode) PHP functions.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <host>localhost</host>
+    <port value="11211" />
+    <memory value="false" />
+    <drivers>
+        <driver value="pdo_mysql" />
+        <driver value="pdo_pgsql" />
+        <driver value="pdo_sqlite" />
+    </drivers>
+    <database>
+        <dbname value="mydb" />
+        <username value="myname" />
+        <password value="secret" />
+    </database>
+</config>
+```
+
+The file can be imported like so:
+
+```php
+use Charcoal\Config\GenericConfig as Config;
+
+$cfg = new Config('path/to/config.xml');
+
+echo $cfg['host']; // "localhost"
+echo $cfg['database']['name']; // "mydb"
+var_export($cfg['database']['drivers']); // [ "pdo_mysql", "pdo_pgsql", "pdo_sqlite" ]
+```
+
+
 
 [symfony/yaml]: https://packagist.org/packages/symfony/yaml

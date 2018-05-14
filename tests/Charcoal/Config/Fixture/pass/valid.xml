@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <host>localhost</host>
+    <port>11211</port>
+    <memory>false</memory>
+    <drivers>pdo_mysql</drivers>
+    <drivers>pdo_pgsql</drivers>
+    <drivers>pdo_sqlite</drivers>
+    <database>
+        <name>mydb</name>
+        <user>myname</user>
+        <pass>secret</pass>
+    </database>
+</config>

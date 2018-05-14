@@ -347,4 +347,47 @@ class ConfigFileAwareTest extends AbstractConfigTestCase
 
         $this->assertEquals([], $this->cfg->data());
     }
+
+
+
+    // Test XML
+    // =========================================================================
+
+    /**
+     * XML: Asserts that the Config supports XML config files.
+     *
+     * @coversNothing
+     * @return void
+     */
+    public function testAddXmlFile()
+    {
+        $path = $this->getPathToFixture('pass/valid.xml');
+        $this->cfg->addFile($path);
+
+        $this->assertEquals('localhost', $this->cfg['host']);
+        $this->assertEquals('11211', $this->cfg['port']);
+        $this->assertEquals(
+            [
+                'pdo_mysql',
+                'pdo_pgsql',
+                'pdo_sqlite',
+            ],
+            $this->cfg['drivers']
+        );
+    }
+
+    /**
+     * XML: Asserts that an ordered list is NOT ignored.
+     *
+     * @expectedException        InvalidArgumentException
+     * @expectedExceptionMessage Entity array access only supports non-numeric keys
+     *
+     * @covers ::addFile()
+     * @return void
+     */
+    public function testAddXmlFileWithInvalidArray()
+    {
+        $path = $this->getPathToFixture('fail/invalid1.xml');
+        $this->cfg->addFile($path);
+    }
 }
